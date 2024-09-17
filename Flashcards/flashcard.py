@@ -7,7 +7,7 @@ root.title("Flashcards")
 root.geometry("800x600")
 root.configure(bg='#2e2e2e')
 
-# Sample flashcards data for biology
+# Sample flashcards data for biology (ai made questions )
 one_marker_flashcards = [
     {"question": "Which word means a change in the environment? [1 mark]\n\nA. Neurone\nB. Reflex\nC. Stimulus", "answer": "C. Stimulus"},
     {"question": "Give two examples of effectors. Select the two correct answers. [2 marks]\n\nA. Glands\nB. Muscles\nC. Neurones\nD. Synapse", "answer": "A. Glands, B. Muscles"},
