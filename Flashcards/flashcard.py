@@ -2,12 +2,13 @@ import tkinter as tk
 from tkinter import ttk
 import random
 
+# Create the main window for the application
 root = tk.Tk()
 root.title("Flashcards")
 root.geometry("800x600")
-root.configure(bg='#2e2e2e')
+root.configure(bg='#f0f0f0')  # Set background color to light mode (light grey)
 
-# Sample flashcards data for biology (ai made questions )
+# Sample flashcards data for biology (AI-generated questions)
 one_marker_flashcards = [
     {"question": "Which word means a change in the environment? [1 mark]\n\nA. Neurone\nB. Reflex\nC. Stimulus", "answer": "C. Stimulus"},
     {"question": "Give two examples of effectors. Select the two correct answers. [2 marks]\n\nA. Glands\nB. Muscles\nC. Neurones\nD. Synapse", "answer": "A. Glands, B. Muscles"},
@@ -34,6 +35,7 @@ one_marker_flashcards = [
     {"question": "What is an axon?", "answer": "An axon is a long, slender projection of a neuron that conducts electrical impulses away from the neuron's cell body."}
 ]
 
+# More complex flashcards (6 markers)
 six_marker_flashcards = [
     {"question": "Describe what happens at a synapse. [6 marks]", "answer": """
         Where two neurones meet there is a small gap, a synapse.
@@ -65,38 +67,38 @@ six_marker_flashcards = [
 current_flashcard_index = 0
 current_flashcards = []
 
-# Function to clear the window
+# Function to clear all widgets on the screen
 def clear_window():
     for widget in root.winfo_children():
         widget.destroy()
 
 # Function to show the main menu
 def show_main_menu():
-    clear_window()
-    main_menu_frame = ttk.Frame(root, style="Dark.TFrame")
+    clear_window()  # Clear window for new widgets
+    main_menu_frame = ttk.Frame(root, style="Light.TFrame")
     main_menu_frame.pack(expand=True)
 
-    ttk.Label(main_menu_frame, text="Select Topic", font=("Helvetica", 20), background='#2e2e2e', foreground='white').pack(pady=20)
+    ttk.Label(main_menu_frame, text="Select Topic", font=("Helvetica", 20), background='#f0f0f0', foreground='black').pack(pady=20)
     
-    topics = ["Biology"]
+    topics = ["Biology"]  # Currently only one topic, "Biology"
     for topic in topics:
-        ttk.Button(main_menu_frame, text=topic, command=lambda t=topic: show_topic_options(t), style="Dark.TButton").pack(pady=10)
+        ttk.Button(main_menu_frame, text=topic, command=lambda t=topic: show_topic_options(t), style="Light.TButton").pack(pady=10)
 
-# Function to show the options for the selected topic
+# Function to show question types for the selected topic
 def show_topic_options(topic):
-    clear_window()
-    options_frame = ttk.Frame(root, style="Dark.TFrame")
+    clear_window()  # Clear window to display options for the selected topic
+    options_frame = ttk.Frame(root, style="Light.TFrame")
     options_frame.pack(expand=True)
 
-    ttk.Label(options_frame, text=f"Select Question Type for {topic}", font=("Helvetica", 20), background='#2e2e2e', foreground='white').pack(pady=20)
+    ttk.Label(options_frame, text=f"Select Question Type for {topic}", font=("Helvetica", 20), background='#f0f0f0', foreground='black').pack(pady=20)
     
     question_types = ["1 Marker Questions", "Full Paragraph Questions"]
     for qtype in question_types:
-        ttk.Button(options_frame, text=qtype, command=lambda qt=qtype: show_flashcards(topic, qt), style="Dark.TButton").pack(pady=10)
+        ttk.Button(options_frame, text=qtype, command=lambda qt=qtype: show_flashcards(topic, qt), style="Light.TButton").pack(pady=10)
 
-# Function to show flashcards based on topic and question type
+# Function to display flashcards based on selected topic and question type
 def show_flashcards(topic, question_type):
-    clear_window()
+    clear_window()  # Clear window before displaying flashcards
     global current_flashcards
     if topic == "Biology":
         if question_type == "1 Marker Questions":
@@ -106,56 +108,57 @@ def show_flashcards(topic, question_type):
     
     global current_flashcard_index
     current_flashcard_index = 0
-    display_flashcard(random.choice(current_flashcards))
+    display_flashcard(random.choice(current_flashcards))  # Display random flashcard
 
 # Function to display a flashcard
 def display_flashcard(flashcard):
-    clear_window()
+    clear_window()  # Clear window for new flashcard content
     
-    flashcard_frame = ttk.Frame(root, style="Dark.TFrame")
+    flashcard_frame = ttk.Frame(root, style="Light.TFrame")
     flashcard_frame.pack(expand=True)
 
-    ttk.Label(flashcard_frame, text=flashcard["question"], font=("Helvetica", 16), wraplength=700, background='#2e2e2e', foreground='white').pack(pady=20)
+    ttk.Label(flashcard_frame, text=flashcard["question"], font=("Helvetica", 16), wraplength=700, background='#f0f0f0', foreground='black').pack(pady=20)
 
-    ttk.Button(flashcard_frame, text="Show Answer", command=lambda: show_answer(flashcard), style="Dark.TButton").pack(pady=10)
-    ttk.Button(flashcard_frame, text="Next", command=next_flashcard, style="Dark.TButton").pack(side="left", padx=10)
-    ttk.Button(flashcard_frame, text="Previous", command=prev_flashcard, style="Dark.TButton").pack(side="right", padx=10)
-    ttk.Button(flashcard_frame, text="Back to Menu", command=show_main_menu, style="Dark.TButton").pack(pady=20)
+    ttk.Button(flashcard_frame, text="Show Answer", command=lambda: show_answer(flashcard), style="Light.TButton").pack(pady=10)
+    ttk.Button(flashcard_frame, text="Next", command=next_flashcard, style="Light.TButton").pack(side="left", padx=10)
+    ttk.Button(flashcard_frame, text="Previous", command=prev_flashcard, style="Light.TButton").pack(side="right", padx=10)
+    ttk.Button(flashcard_frame, text="Back to Menu", command=show_main_menu, style="Light.TButton").pack(pady=20)
 
-# Function to show the answer of a flashcard
+# Function to display the answer for the current flashcard
 def show_answer(flashcard):
-    clear_window()
+    clear_window()  # Clear window to display answer
     
-    flashcard_frame = ttk.Frame(root, style="Dark.TFrame")
+    flashcard_frame = ttk.Frame(root, style="Light.TFrame")
     flashcard_frame.pack(expand=True)
 
-    ttk.Label(flashcard_frame, text=flashcard["question"], font=("Helvetica", 16), wraplength=700, background='#2e2e2e', foreground='white').pack(pady=20)
-    ttk.Label(flashcard_frame, text=flashcard["answer"], font=("Helvetica", 14), wraplength=700, background='#2e2e2e', foreground='white').pack(pady=20)
+    ttk.Label(flashcard_frame, text=flashcard["question"], font=("Helvetica", 16), wraplength=700, background='#f0f0f0', foreground='black').pack(pady=20)
+    ttk.Label(flashcard_frame, text=flashcard["answer"], font=("Helvetica", 14), wraplength=700, background='#f0f0f0', foreground='black').pack(pady=20)
 
-    ttk.Button(flashcard_frame, text="Next", command=next_flashcard, style="Dark.TButton").pack(side="left", padx=10)
-    ttk.Button(flashcard_frame, text="Previous", command=prev_flashcard, style="Dark.TButton").pack(side="right", padx=10)
-    ttk.Button(flashcard_frame, text="Back to Menu", command=show_main_menu, style="Dark.TButton").pack(pady=20)
+    ttk.Button(flashcard_frame, text="Next", command=next_flashcard, style="Light.TButton").pack(side="left", padx=10)
+    ttk.Button(flashcard_frame, text="Previous", command=prev_flashcard, style="Light.TButton").pack(side="right", padx=10)
+    ttk.Button(flashcard_frame, text="Back to Menu", command=show_main_menu, style="Light.TButton").pack(pady=20)
 
-# Function to navigate to the next flashcard
+# Function to move to the next flashcard
 def next_flashcard():
     global current_flashcard_index
     current_flashcard_index = (current_flashcard_index + 1) % len(current_flashcards)
     display_flashcard(current_flashcards[current_flashcard_index])
 
-# Function to navigate to the previous flashcard
+# Function to move to the previous flashcard
 def prev_flashcard():
     global current_flashcard_index
     current_flashcard_index = (current_flashcard_index - 1) % len(current_flashcards)
     display_flashcard(current_flashcards[current_flashcard_index])
 
-# Define custom styles
+# Define custom styles for light mode
 style = ttk.Style()
-style.configure("Dark.TFrame", background='#2e2e2e')
-style.configure("Dark.TButton", background='#4a4a4a', foreground='white', font=("Helvetica", 12))
-style.map("Dark.TButton",
+style.configure("Light.TFrame", background='#f0f0f0')  # Light background
+style.configure("Light.TButton", background='#d0d0d0', foreground='black', font=("Helvetica", 12))
+style.map("Light.TButton",
     background=[('active', 'white')],
-    foreground=[('active', 'white')]
+    foreground=[('active', 'black')]
 )
 
+# Start the main menu and run the application
 show_main_menu()
 root.mainloop()
